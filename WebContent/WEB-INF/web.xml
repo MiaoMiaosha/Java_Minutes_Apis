@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+
+<!--配置过滤器-->
+  <filter>
+      <filter-name>TokenFilter</filter-name>
+      <filter-class>com.minutes.api.TokenFilter</filter-class>
+  </filter>
+  
+  <!--映射过滤器-->
+  <filter-mapping>
+      <filter-name>TokenFilter</filter-name>
+      <!--表示拦截/api/*的请求 -->
+      <url-pattern>/api/*</url-pattern>
+  </filter-mapping>
+
+
+  <servlet>
+    <servlet-name>Valid</servlet-name>
+    <servlet-class>com.minutes.api.Valid</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Valid</servlet-name>
+    <url-pattern>/valid</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Signin</servlet-name>
+    <servlet-class>com.minutes.api.Signin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Signin</servlet-name>
+    <url-pattern>/signin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>com.minutes.api.Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/api/logout</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Userinfo</servlet-name>
+    <servlet-class>com.minutes.api.Userinfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Userinfo</servlet-name>
+    <url-pattern>/api/userinfo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ErrorPage</servlet-name>
+    <servlet-class>com.minutes.api.ErrorPage</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ErrorPage</servlet-name>
+    <url-pattern>/errorpage</url-pattern>
+  </servlet-mapping>
+</web-app>

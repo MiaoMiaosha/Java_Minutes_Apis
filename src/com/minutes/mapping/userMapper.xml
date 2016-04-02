@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.minutes.mapping.userMapper">
+ 
+ 	<!-- 查询用户 ,根据tel-->
+ 	<select id="getUser" parameterType="String" resultType="_User">
+ 	select * from minutes_user where tel=#{tel}
+ 	</select>
+ 	
+ 	<!-- 查询用户 ,根据tel-->
+ 	<select id="tokenFilter" parameterType="String" resultType="_User">
+ 	select * from minutes_user where token=#{token}
+ 	</select>
+ 	
+ 	<!-- 查询用户 ,根据id和token-->
+ 	<select id="userinfo" parameterType="_User" resultType="_User">
+ 	select * from minutes_user where id=#{id} and token=#{token}
+ 	</select>
+ 	
+    <!-- 更新token,token_time,根据id和token -->
+ 	<update id="deleteToken" parameterType="_User" >
+ 	update minutes_user set token="",token_time=0 where id=#{id} and token=#{token}
+ 	</update>
+ 	
+ 	<!-- 更新token -->
+ 	<update id="updateToken" parameterType="_User" > 
+ 	update minutes_user set token=#{token} where tel=#{tel}
+ 	</update>
+ 	
+ 	<!-- 查询最后一个用户id -->
+ 	<select id="getLastUser" resultType="int">
+ 	SELECT id FROM minutes_user order by id desc limit 0,1;
+ 	</select>
+ 	
+ 	
+ 	<!-- 创建用户(Create) -->
+    <insert id="addUser" parameterType="_User">
+        insert into minutes_user(id,tel,createAt,token) values (#{id},#{tel},#{createAt},#{token})
+    </insert>
+
+  </mapper>

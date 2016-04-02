@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!-- 使用properties文件保存数据库连接信息 -->
+	<properties resource="/com/minutes/conf/db.properties" />
+	
+	<!-- 给类映射别名 -->
+    <typeAliases>
+    	<typeAlias type="com.minutes.domain.User" alias="_User"/>
+    </typeAliases>
+    
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <!-- 配置数据库连接信息 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}" />
+                <property name="url" value="${url}" />
+                <property name="username" value="${name}" />
+                <property name="password" value="${password}" />
+            </dataSource>
+        </environment>
+    </environments>
+    
+    <mappers>
+    	<mapper resource="com/minutes/mapping/userMapper.xml"></mapper>
+    
+    </mappers>
+    
+    
+    
+</configuration>
